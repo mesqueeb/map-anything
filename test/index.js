@@ -8,7 +8,7 @@ test('mapObject', t => {
     '004': { name: 'Charmander', level: 8 },
     '007': { name: 'Squirtle', level: 11 }
   }
-  const res = mapObject(pokemon, pkmn => {
+  res = mapObject(target, pkmn => {
     pkmn.level++
     return pkmn
   })

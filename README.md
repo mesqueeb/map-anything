@@ -1,8 +1,10 @@
-# Map anything
+# Map anything 🗺
 
 ```
 npm i map-anything
 ```
+
+Array.map but for objects. A small and simple integration.
 
 ## Motivation
 
@@ -68,6 +70,7 @@ function mapObject (object, fn) {
   return Object.entries(object)
     .reduce((carry, [key, value], index, array) => {
       carry[key] = fn(value, index, array)
+      return carry
     }, {})
 }
 ```

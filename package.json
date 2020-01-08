@@ -1,17 +1,14 @@
 {
   "name": "map-anything",
   "version": "0.0.0",
-  "description": "Map objects",
+  "description": "Array.map but for objects. A small and simple integration.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "typings": "types/index.d.ts",
-  "directories": {
-    "test": "test",
+  "scripts": {
+    "test": "ava",
     "rollup": "rollup -c build/rollup.js",
     "build": "npm run rollup && npm run test"
-  },
-  "scripts": {
-    "test": "ava"
   },
   "repository": {
     "type": "git",

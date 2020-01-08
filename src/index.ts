@@ -12,5 +12,6 @@ export function mapObject (
 ): object {
   return Object.entries(target).reduce((carry, [key, value], index, array) => {
     carry[key] = mapFunction(value, index, array)
+    return carry
   }, {})
 }
