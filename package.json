@@ -12,18 +12,20 @@
     "rollup": "rollup -c build/rollup.js",
     "build": "npm run lint && npm run test && npm run rollup"
   },
-  "dependencies": {
-    "ts-node": "^8.6.2"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
     "ava": "^3.5.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-tree-shaking": "^1.8.0",
     "rollup": "^1.32.1",
     "rollup-plugin-typescript2": "^0.26.0",
-    "typescript": "^3.7.4"
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
   },
-  "keywords": [
-    "map-object"
-  ],
+  "keywords": ["map-object"],
   "author": "Luca Ban - Mesqueeb",
   "license": "MIT",
   "bugs": {
@@ -35,11 +37,7 @@
     "url": "git+https://github.com/mesqueeb/map-anything.git"
   },
   "ava": {
-    "extensions": [
-      "ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ]
+    "extensions": ["ts"],
+    "require": ["ts-node/register"]
   }
 }

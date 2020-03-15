@@ -1,12 +1,12 @@
 import test from 'ava'
-import { mapObject } from '../dist/index.cjs'
+import { mapObject } from '../src/index'
 
 test('mapObject', t => {
   let res, target
   target = {
     '001': { name: 'Bulbasaur', level: 10 },
     '004': { name: 'Charmander', level: 8 },
-    '007': { name: 'Squirtle', level: 11 }
+    '007': { name: 'Squirtle', level: 11 },
   }
   res = mapObject(target, pkmn => {
     pkmn.level++
@@ -15,6 +15,6 @@ test('mapObject', t => {
   t.deepEqual(res, {
     '001': { name: 'Bulbasaur', level: 11 },
     '004': { name: 'Charmander', level: 9 },
-    '007': { name: 'Squirtle', level: 12 }
+    '007': { name: 'Squirtle', level: 12 },
   })
 })
