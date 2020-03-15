@@ -1,5 +1,6 @@
 {
   "name": "map-anything",
+  "sideEffects": false,
   "version": "0.0.0",
   "description": "Array.map but for objects. A small and simple integration.",
   "main": "dist/index.cjs.js",
@@ -7,24 +8,38 @@
   "typings": "types/index.d.ts",
   "scripts": {
     "test": "ava",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "rollup": "rollup -c build/rollup.js",
-    "build": "npm run rollup && npm run test"
+    "build": "npm run lint && npm run test && npm run rollup"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mesqueeb/map-anything.git"
+  "dependencies": {
+    "ts-node": "^8.6.2"
   },
-  "keywords": ["map-object"],
+  "devDependencies": {
+    "ava": "^3.5.0",
+    "rollup": "^1.32.1",
+    "rollup-plugin-typescript2": "^0.26.0",
+    "typescript": "^3.7.4"
+  },
+  "keywords": [
+    "map-object"
+  ],
   "author": "Luca Ban - Mesqueeb",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mesqueeb/map-anything/issues"
   },
   "homepage": "https://github.com/mesqueeb/map-anything#readme",
-  "devDependencies": {
-    "ava": "^2.4.0",
-    "rollup": "^1.28.0",
-    "rollup-plugin-typescript2": "^0.25.3",
-    "typescript": "^3.7.4"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mesqueeb/map-anything.git"
+  },
+  "ava": {
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
   }
 }
