@@ -1,7 +1,7 @@
 {
   "name": "map-anything",
   "sideEffects": false,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Array.map but for objects. A small and simple integration.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -25,7 +25,9 @@
     "ts-node": "^8.6.2",
     "typescript": "^3.8.3"
   },
-  "keywords": ["map-object"],
+  "keywords": [
+    "map-object"
+  ],
   "author": "Luca Ban - Mesqueeb",
   "license": "MIT",
   "bugs": {
@@ -37,7 +39,11 @@
     "url": "git+https://github.com/mesqueeb/map-anything.git"
   },
   "ava": {
-    "extensions": ["ts"],
-    "require": ["ts-node/register"]
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
   }
 }
