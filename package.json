@@ -1,7 +1,7 @@
 {
   "name": "map-anything",
   "sideEffects": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Array.map but for objects. A small and simple integration.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -12,18 +12,21 @@
     "rollup": "rollup -c build/rollup.js",
     "build": "npm run lint && npm run test && npm run rollup"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ts-toolbelt": "^6.12.2"
+  },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.23.0",
-    "@typescript-eslint/parser": "^2.23.0",
-    "ava": "^3.5.0",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
+    "ava": "^3.10.1",
     "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-tree-shaking": "^1.8.0",
-    "rollup": "^1.32.1",
-    "rollup-plugin-typescript2": "^0.26.0",
-    "ts-node": "^8.6.2",
-    "typescript": "^3.8.3"
+    "rollup": "^2.21.0",
+    "rollup-plugin-typescript2": "^0.27.1",
+    "ts-node": "^8.10.2",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.9.6"
   },
   "keywords": [
     "map-object"
@@ -43,6 +46,7 @@
       "ts"
     ],
     "require": [
+      "tsconfig-paths/register",
       "ts-node/register"
     ]
   }
