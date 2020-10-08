@@ -3,7 +3,9 @@
  *
  * @template T
  * @param {T} target
- * @param {(value: T, index?: number, array?: any[]) => any} mapFunction
- * @returns {object}
+ * @param {(value: T, propName: keyof T, array: T[keyof T][]) => any} mapFunction
+ * @returns {Record<string, any>}
  */
-export declare function mapObject<T extends object>(target: T, mapFunction: (value: T[keyof T], index?: number, array?: T[keyof T][]) => any): unknown;
+export declare function mapObject<T extends Record<string, any>, MapFunction extends (value: T[keyof T], propName: keyof T, array: T[keyof T][]) => any>(target: T, mapFunction: MapFunction): {
+    [key in keyof T]: ReturnType<typeof mapFunction>;
+};

@@ -51,6 +51,21 @@ test('mapObjectWithNumbers', (t) => {
   })
 })
 
+test('set to propname + test type inside of second arg', (t) => {
+  type Pokemon = { name: string, level: number }
+  const target: { [id in string]: Pokemon } = {
+    '001': { name: 'Bulbasaur', level: 10 },
+    '004': { name: 'Charmander', level: 8 },
+    '007': { name: 'Squirtle', level: 11 },
+  }
+  const res = mapObject(target, (pkmn, propName) => propName)
+  t.deepEqual(res, {
+    '001': '001',
+    '004': '004',
+    '007': '007',
+  })
+})
+
 test('replace objects with numbers', (t) => {
   type Pokemon = { name: string, level: number }
   const target: { [id in string]: Pokemon } = {
