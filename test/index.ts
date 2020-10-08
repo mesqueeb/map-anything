@@ -18,6 +18,23 @@ test('mapObjectWithObjects', (t) => {
   })
 })
 
+test('with types', (t) => {
+  type Pokemon = { name: string, level: number }
+  const target: { [id in string]: Pokemon } = {
+    '001': { name: 'Bulbasaur', level: 10 },
+    '004': { name: 'Charmander', level: 8 },
+    '007': { name: 'Squirtle', level: 11 },
+  }
+  const mapFn = (pkmn: Pokemon): Pokemon => ({ ...pkmn, level: pkmn.level + 1 })
+
+  const res = mapObject(target, mapFn)
+  t.deepEqual(res, {
+    '001': { name: 'Bulbasaur', level: 11 },
+    '004': { name: 'Charmander', level: 9 },
+    '007': { name: 'Squirtle', level: 12 },
+  })
+})
+
 test('mapObjectWithNumbers', (t) => {
   const target = {
     '001': 1,
@@ -31,5 +48,22 @@ test('mapObjectWithNumbers', (t) => {
     '001': 2,
     '004': 3,
     '007': 4,
+  })
+})
+
+test('replace objects with numbers', (t) => {
+  type Pokemon = { name: string, level: number }
+  const target: { [id in string]: Pokemon } = {
+    '001': { name: 'Bulbasaur', level: 10 },
+    '004': { name: 'Charmander', level: 8 },
+    '007': { name: 'Squirtle', level: 11 },
+  }
+  const mapFn = (pkmn: Pokemon) => pkmn.name
+
+  const res = mapObject(target, mapFn)
+  t.deepEqual(res, {
+    '001': 'Bulbasaur',
+    '004': 'Charmander',
+    '007': 'Squirtle',
   })
 })

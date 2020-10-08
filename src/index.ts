@@ -4,14 +4,17 @@
  * @template T
  * @param {T} target
  * @param {(value: T, index?: number, array?: any[]) => any} mapFunction
- * @returns {object}
+ * @returns {Record<string, any>}
  */
-export function mapObject<T extends object>(
+export function mapObject<
+  T extends Record<string, any>,
+  MapFunction extends (value: T[keyof T], index?: number, array?: T[keyof T][]) => any
+>(
   target: T,
-  mapFunction: (value: T[keyof T], index?: number, array?: T[keyof T][]) => any
-): unknown {
+  mapFunction: MapFunction
+): { [key in keyof T]: ReturnType<typeof mapFunction> } {
   return Object.entries(target).reduce((carry, [key, value], index, array) => {
-    carry[key] = mapFunction(value, index, (array as unknown) as T[keyof T][])
+    carry[key as keyof T] = mapFunction(value, index, (array as unknown) as T[keyof T][])
     return carry
-  }, {})
+  }, {} as { [key in keyof T]: ReturnType<typeof mapFunction> } )
 }
