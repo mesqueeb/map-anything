@@ -18,7 +18,7 @@ But this doesn't exist for objects, so you need to do this instead:
 
 ```js
 Object.entries(someObject).reduce((carry, [key, value], index, array) => {
-  carry[key] = someFunction(value, index, array)
+  carry[key] = someFunction(value, key, array)
   return carry
 }, {})
 ```
@@ -43,33 +43,51 @@ import { mapObject } from 'map-anything'
 const pokemon = {
   '001': { name: 'Bulbasaur', level: 10 },
   '004': { name: 'Charmander', level: 8 },
-  '007': { name: 'Squirtle', level: 11 }
+  '007': { name: 'Squirtle', level: 11 },
 }
 
-const levelUp = mapObject(pokemon, pkmn => {
-  pkmn.level++
-  return pkmn
+const levelUp = mapObject(pokemon, (pkmn) => {
+  return { ...pkmn, level: pkmn.level + 1 }
 })
 
 levelUp ===
   {
     '001': { name: 'Bulbasaur', level: 11 },
     '004': { name: 'Charmander', level: 9 },
-    '007': { name: 'Squirtle', level: 12 }
+    '007': { name: 'Squirtle', level: 12 },
   }
 ```
 
-> Please note, just like `Array.map` when using nested values/objects, the original object will also have its values modified because of references.
+### Access the propName in the map function
+
+A function passed to `Array.map` will get the value as first argument and an **index** as second. With `mapObject` you will get the **propName** as second argument.
+
+```js
+import { mapObject } from 'map-anything'
+
+const addIds = mapObject(pokemon, (pkmn, propName) => {
+  const id = propName
+  return { ...pkmn, id }
+})
+
+addIds ===
+  {
+  '001': { name: 'Bulbasaur', level: 10, id: '001' },
+  '004': { name: 'Charmander', level: 8, id: '004' },
+  '007': { name: 'Squirtle', level: 11, id: '007' },
+  }
+```
 
 ## Source code
 
-The source code is literally just this:
+The source code is rather simple, it's doing something like the snippet show here below.
+<br />However, it's adding amazing typescript.
 
 ```JavaScript
 function mapObject (object, fn) {
   return Object.entries(object)
     .reduce((carry, [key, value], index, array) => {
-      carry[key] = fn(value, index, array)
+      carry[key] = fn(value, key, array)
       return carry
     }, {})
 }
