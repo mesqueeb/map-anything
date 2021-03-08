@@ -5,7 +5,7 @@
   "description": "Array.map but for objects. A small and simple integration.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
-  "typings": "types/index.d.ts",
+  "types": "types/index.d.ts",
   "scripts": {
     "test": "ava",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
