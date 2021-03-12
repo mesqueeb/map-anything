@@ -84,7 +84,7 @@ addIds ===
 
 Without having to specify the return type in the reducer, I've set `map-anything` up so it automatically detects that type for you!
 
-![typescript support](https://raw.githubusercontent.com/mesqueeb/merge-anything/master/.github/typescript-support.png)
+![typescript support](https://raw.githubusercontent.com/mesqueeb/map-anything/master/.github/typescript-support.png)
 
 ## Source code
 
