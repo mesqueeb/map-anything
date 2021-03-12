@@ -13,21 +13,20 @@
     "build": "npm run lint && npm run test && npm run rollup",
     "release": "npm run build && np"
   },
-  "dependencies": {},
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.6.1",
-    "@typescript-eslint/parser": "^4.6.1",
-    "ava": "^3.13.0",
-    "eslint": "^7.12.1",
-    "eslint-config-prettier": "^6.15.0",
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "@typescript-eslint/parser": "^4.17.0",
+    "ava": "^3.15.0",
+    "eslint": "^7.21.0",
+    "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-tree-shaking": "^1.8.0",
     "np": "^7.4.0",
     "prettier": "^2.2.1",
-    "rollup": "^2.33.1",
-    "rollup-plugin-typescript2": "^0.29.0",
-    "ts-node": "^9.0.0",
+    "rollup": "^2.41.2",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "ts-node": "^9.1.1",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^4.0.5"
+    "typescript": "^4.2.3"
   },
   "keywords": [
     "map-object"
@@ -54,5 +53,25 @@
   "np": {
     "yarn": false,
     "branch": "production"
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint",
+      "tree-shaking"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "prettier"
+    ],
+    "rules": {
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/ban-ts-ignore": "off",
+      "tree-shaking/no-side-effects-in-initialization": "error",
+      "@typescript-eslint/ban-ts-comment": "off"
+    }
   }
 }

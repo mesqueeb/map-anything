@@ -14,7 +14,7 @@ I always want to do:
 someObject.map(val => someFunction)
 ```
 
-But this doesn't exist for objects, so you need to do this instead:
+But this doesn't exist for objects, you need to do this instead:
 
 ```js
 Object.entries(someObject).reduce((carry, [key, value], index, array) => {
@@ -24,6 +24,8 @@ Object.entries(someObject).reduce((carry, [key, value], index, array) => {
 ```
 
 So I made a wrapper function for that. 😃
+
+`map-anything` has very good #[TypeScript](#typescript) support as well.
 
 ## Meet the family
 
@@ -77,6 +79,12 @@ addIds ===
   '007': { name: 'Squirtle', level: 11, id: '007' },
   }
 ```
+
+## TypeScript
+
+Without having to specify the return type in the reducer, I've set `map-anything` up so it automatically detects that type for you!
+
+![typescript support](https://raw.githubusercontent.com/mesqueeb/merge-anything/master/.github/typescript-support.png)
 
 ## Source code
 
