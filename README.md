@@ -25,7 +25,7 @@ Object.entries(someObject).reduce((carry, [key, value], index, array) => {
 
 So I made a wrapper function for that. 😃
 
-`map-anything` has very good #[TypeScript](#typescript) support as well.
+`map-anything` has very good [#TypeScript](#typescript) support as well.
 
 ## Meet the family
 
