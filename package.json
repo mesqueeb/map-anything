@@ -1,7 +1,7 @@
 {
   "name": "map-anything",
   "sideEffects": false,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Array.map but for objects. A small and simple integration.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
