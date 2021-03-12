@@ -2,7 +2,7 @@
   "name": "map-anything",
   "sideEffects": false,
   "version": "1.0.3",
-  "description": "Array.map but for objects. A small and simple integration.",
+  "description": "Array.map but for objects with good TypeScript support. A small and simple integration.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "types/index.d.ts",
@@ -29,7 +29,14 @@
     "typescript": "^4.2.3"
   },
   "keywords": [
-    "map-object"
+    "map-object",
+    "object-map",
+    "object-to-object",
+    "mapping",
+    "transform",
+    "object-mapper",
+    "compose",
+    "map-reduce"
   ],
   "author": "Luca Ban - Mesqueeb",
   "license": "MIT",

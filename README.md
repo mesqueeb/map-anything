@@ -4,7 +4,7 @@
 npm i map-anything
 ```
 
-Array.map but for objects. A small and simple integration.
+Array.map but for objects with good TypeScript support. A small and simple integration.
 
 ## Motivation
 
