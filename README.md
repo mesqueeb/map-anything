@@ -1,5 +1,8 @@
 # Map anything 🗺
 
+<a href="https://www.npmjs.com/package/map-anything"><img src="https://img.shields.io/npm/v/map-anything.svg" alt="Total Downloads"></a>
+<a href="https://www.npmjs.com/package/map-anything"><img src="https://img.shields.io/npm/dw/map-anything.svg" alt="Latest Stable Version"></a>
+
 ```
 npm i map-anything
 ```
