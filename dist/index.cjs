@@ -1,3 +1,7 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
 /**
  * Map each value of an object with provided function, just like `Array.map`
  *
@@ -7,11 +11,10 @@
  * @returns {Record<string, any>}
  */
 function mapObject(target, mapFunction) {
-    return Object.entries(target).reduce(function (carry, _a, index, array) {
-        var key = _a[0], value = _a[1];
+    return Object.entries(target).reduce((carry, [key, value], index, array) => {
         carry[key] = mapFunction(value, key, array);
         return carry;
     }, {});
 }
 
-export { mapObject };
+exports.mapObject = mapObject;
