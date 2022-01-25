@@ -1,7 +1,7 @@
-import test from 'ava'
+import { test, expect } from 'vitest'
 import { mapObject } from '../src/index'
 
-test('mapObjectWithObjects', (t) => {
+test('mapObjectWithObjects', () => {
   type Pokemon = { name: string; level: number }
 
   const target: { [id in string]: Pokemon } = {
@@ -20,7 +20,7 @@ test('mapObjectWithObjects', (t) => {
   })
 })
 
-test('with types', (t) => {
+test('with types', () => {
   type Pokemon = { name: string; level: number }
 
   const target: { [id in string]: Pokemon } = {
@@ -38,7 +38,7 @@ test('with types', (t) => {
   })
 })
 
-test('mapObjectWithNumbers', (t) => {
+test('mapObjectWithNumbers', () => {
   const target = {
     '001': 1,
     '004': 2,
@@ -54,7 +54,7 @@ test('mapObjectWithNumbers', (t) => {
   })
 })
 
-test('set to propname + test type inside of second arg', (t) => {
+test('set to propname + test type inside of second arg', () => {
   type Pokemon = { name: string; level: number }
 
   const target: { [id in string]: Pokemon } = {
@@ -70,7 +70,7 @@ test('set to propname + test type inside of second arg', (t) => {
   })
 })
 
-test('replace objects with numbers', (t) => {
+test('replace objects with numbers', () => {
   type Pokemon = { name: string; level: number }
 
   const target: { [id in string]: Pokemon } = {
