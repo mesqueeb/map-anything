@@ -4,8 +4,8 @@
 export declare function mapObject<T extends Record<string | number | symbol, unknown>, MapFunction extends (value: T[keyof T], propName: keyof T, array: T[keyof T][]) => any>(target: T, mapFunction: MapFunction): {
     [key in keyof T]: ReturnType<typeof mapFunction>;
 };
-export declare type KeyOfMap<M extends Map<unknown, unknown>> = M extends Map<infer K, unknown> ? K : never;
-export declare type ValueOfMap<M extends Map<unknown, unknown>> = M extends Map<unknown, infer V> ? V : never;
+export type KeyOfMap<M extends Map<unknown, unknown>> = M extends Map<infer K, unknown> ? K : never;
+export type ValueOfMap<M extends Map<unknown, unknown>> = M extends Map<unknown, infer V> ? V : never;
 /**
  * Map each value of a map with provided function, just like `Array.map`
  */
