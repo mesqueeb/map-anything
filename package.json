@@ -1,6 +1,6 @@
 {
   "name": "map-anything",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "Array.map but for objects with good TypeScript support. A small and simple integration.",
   "type": "module",
   "sideEffects": false,
