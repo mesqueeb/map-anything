@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest'
-import { mapObject } from '../src/index'
+import { mapObject, mapObjectAsync } from '../src/index'
 
 test('mapObjectWithObjects', () => {
   type Pokemon = { name: string; level: number }
@@ -39,19 +39,22 @@ test('with types', () => {
 })
 
 test('mapObjectWithNumbers', () => {
-  const target = {
-    '001': 1,
-    '004': 2,
-    '007': 3,
-  }
+  const target = { '001': 1, '004': 2, '007': 3 }
 
   const res = mapObject(target, (val, a, b) => val + 1)
 
-  expect(res).toEqual({
-    '001': 2,
-    '004': 3,
-    '007': 4,
+  expect(res).toEqual({ '001': 2, '004': 3, '007': 4 })
+})
+
+test('mapAsyncObjectWithNumbers', async () => {
+  const target = { '001': 1, '004': 2, '007': 3 }
+
+  const res = await mapObjectAsync(target, async (val, a, b) => {
+    await new Promise((resolve) => setTimeout(resolve, 10))
+    return val + 1
   })
+
+  expect(res).toEqual({ '001': 2, '004': 3, '007': 4 })
 })
 
 test('set to propname + test type inside of second arg', () => {

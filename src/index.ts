@@ -11,6 +11,28 @@ export function mapObject<
   }, {} as { [key in keyof T]: ReturnType<typeof mapFunction> })
 }
 
+/**
+ * Map each value of an object with provided function, just like `Array.map`
+ */
+export async function mapObjectAsync<
+  T extends Record<string | number | symbol, unknown>,
+  MapFunction extends (value: T[keyof T], propName: keyof T, array: T[keyof T][]) => Promise<any>
+>(
+  target: T,
+  mapFunction: MapFunction
+): Promise<{ [key in keyof T]: Awaited<ReturnType<typeof mapFunction>> }> {
+  const entries = Object.entries(target) as [keyof T, T[keyof T]][]
+  const promises = entries.map(async ([key, value]) => {
+    const newValue = await mapFunction(value, key, target as any)
+    return [key, newValue]
+  })
+  const results = await Promise.all(promises)
+  return results.reduce((carry, [key, value]) => {
+    carry[key as keyof T] = value
+    return carry
+  }, {} as { [key in keyof T]: Awaited<ReturnType<MapFunction>> })
+}
+
 // map utilities
 export type KeyOfMap<M extends Map<unknown, unknown>> = M extends Map<infer K, unknown> ? K : never
 export type ValueOfMap<M extends Map<unknown, unknown>> = M extends Map<unknown, infer V>
