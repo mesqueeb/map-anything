@@ -14,7 +14,7 @@ Array.map but for objects with good TypeScript support. A small and simple integ
 I always want to do:
 
 ```js
-someObject.map(val => someFunction)
+someObject.map((val) => someFunction)
 ```
 
 But this doesn't exist for objects, you need to do this instead:
@@ -30,22 +30,15 @@ So I made a wrapper function for that. 😃
 
 `map-anything` has very good [#TypeScript](#typescript) support as well.
 
-## Meet the family (more tiny utils with TS support)
-
-- [is-what 🙉](https://github.com/mesqueeb/is-what)
-- [is-where 🙈](https://github.com/mesqueeb/is-where)
-- [merge-anything 🥡](https://github.com/mesqueeb/merge-anything)
-- [check-anything 👁](https://github.com/mesqueeb/check-anything)
-- [remove-anything ✂️](https://github.com/mesqueeb/remove-anything)
-- [getorset-anything 🐊](https://github.com/mesqueeb/getorset-anything)
-- [map-anything 🗺](https://github.com/mesqueeb/map-anything)
-- [filter-anything ⚔️](https://github.com/mesqueeb/filter-anything)
-- [copy-anything 🎭](https://github.com/mesqueeb/copy-anything)
-- [case-anything 🐫](https://github.com/mesqueeb/case-anything)
-- [flatten-anything 🏏](https://github.com/mesqueeb/flatten-anything)
-- [nestify-anything 🧅](https://github.com/mesqueeb/nestify-anything)
-
 ## Usage
+
+Provided Functions:
+
+- `mapObject` takes an object and maps over the values of each key
+- `mapObjectAsync` takes an object and maps a promise over the values of each key, after which you can just do a single await
+- `mapMap` takes a map and maps over the values of each key
+
+### Basic Usage
 
 ```js
 import { mapObject } from 'map-anything'
@@ -60,6 +53,7 @@ const levelUp = mapObject(pokemon, (pkmn) => {
   return { ...pkmn, level: pkmn.level + 1 }
 })
 
+// results in:
 levelUp ===
   {
     '001': { name: 'Bulbasaur', level: 11 },
@@ -75,16 +69,47 @@ A function passed to `Array.map` will get the value as first argument and an **i
 ```js
 import { mapObject } from 'map-anything'
 
+const pokemon = {
+  '001': { name: 'Bulbasaur', level: 10 },
+  '004': { name: 'Charmander', level: 8 },
+  '007': { name: 'Squirtle', level: 11 },
+}
+
 const addIds = mapObject(pokemon, (pkmn, propName) => {
   const id = propName
   return { ...pkmn, id }
 })
 
+// results in:
 addIds ===
   {
-  '001': { name: 'Bulbasaur', level: 10, id: '001' },
-  '004': { name: 'Charmander', level: 8, id: '004' },
-  '007': { name: 'Squirtle', level: 11, id: '007' },
+    '001': { name: 'Bulbasaur', level: 10, id: '001' },
+    '004': { name: 'Charmander', level: 8, id: '004' },
+    '007': { name: 'Squirtle', level: 11, id: '007' },
+  }
+```
+
+### Map Object Async
+
+```ts
+const pokemon = {
+  '001': { name: 'Bulbasaur', level: 10 },
+  '004': { name: 'Charmander', level: 8 },
+  '007': { name: 'Squirtle', level: 11 },
+}
+
+const result = await mapObjectAsync(pokemon, async (pkmn, propName) => {
+  const id = propName
+  const data = await fetchData(id) // hypothetical API call
+  return { ...pkmn, data }
+})
+
+// results in:
+result ===
+  {
+    '001': { name: 'Bulbasaur', level: 10, data: '...' }, // some fetched data
+    '004': { name: 'Charmander', level: 8, data: '...' },
+    '007': { name: 'Squirtle', level: 11, data: '...' },
   }
 ```
 
@@ -93,6 +118,21 @@ addIds ===
 Without having to specify the return type in the reducer, I've set `map-anything` up so it automatically detects that type for you!
 
 ![typescript support](https://raw.githubusercontent.com/mesqueeb/map-anything/master/.github/typescript-support.png)
+
+## Meet the family (more tiny utils with TS support)
+
+- [is-what 🙉](https://github.com/mesqueeb/is-what)
+- [is-where 🙈](https://github.com/mesqueeb/is-where)
+- [merge-anything 🥡](https://github.com/mesqueeb/merge-anything)
+- [check-anything 👁](https://github.com/mesqueeb/check-anything)
+- [remove-anything ✂️](https://github.com/mesqueeb/remove-anything)
+- [getorset-anything 🐊](https://github.com/mesqueeb/getorset-anything)
+- [map-anything 🗺](https://github.com/mesqueeb/map-anything)
+- [filter-anything ⚔️](https://github.com/mesqueeb/filter-anything)
+- [copy-anything 🎭](https://github.com/mesqueeb/copy-anything)
+- [case-anything 🐫](https://github.com/mesqueeb/case-anything)
+- [flatten-anything 🏏](https://github.com/mesqueeb/flatten-anything)
+- [nestify-anything 🧅](https://github.com/mesqueeb/nestify-anything)
 
 ## Source code
 
