@@ -1,5 +1,5 @@
-import { test, expect } from 'vitest'
-import { mapObject, mapObjectAsync } from '../src/index'
+import { expect, test } from 'vitest'
+import { mapObject, mapObjectAsync } from '../src/index.js'
 
 test('mapObjectWithObjects', () => {
   type Pokemon = { name: string; level: number }

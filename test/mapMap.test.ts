@@ -1,5 +1,5 @@
-import { test, expect } from 'vitest'
-import { mapMap } from '../src/index'
+import { expect, test } from 'vitest'
+import { mapMap } from '../src/index.js'
 
 test('mapMapWithObjects', () => {
   type Pokemon = { name: string; level: number }

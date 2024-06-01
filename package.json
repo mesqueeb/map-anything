@@ -4,9 +4,6 @@
   "description": "Array.map but for objects with good TypeScript support. A small and simple integration.",
   "type": "module",
   "sideEffects": false,
-  "types": "./dist/index.d.ts",
-  "module": "./dist/index.js",
-  "main": "./dist/index.js",
   "exports": {
     ".": {
       "require": {
@@ -19,33 +16,25 @@
       }
     }
   },
-  "files": [
-    "dist"
-  ],
   "engines": {
-    "node": ">=12.13"
+    "node": ">=18"
   },
   "scripts": {
     "test": "vitest run",
-    "lint": "tsc --noEmit && eslint ./src --ext .ts",
-    "build": "rollup -c ./rollup.config.js",
-    "release": "npm run lint && del dist && npm run build && np"
+    "lint": "tsc --noEmit && eslint ./src",
+    "build": "del-cli dist && tsc",
+    "release": "npm run lint && npm run build && np"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.12.0",
-    "@typescript-eslint/parser": "^6.12.0",
     "del-cli": "^5.1.0",
-    "eslint": "^8.54.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-tree-shaking": "^1.12.0",
-    "np": "^8.0.4",
-    "prettier": "^3.1.0",
-    "rollup": "^4.5.2",
-    "rollup-plugin-dts": "^6.1.0",
-    "rollup-plugin-esbuild": "^6.1.0",
-    "typescript": "^5.3.2",
-    "vitest": "^0.34.6"
+    "np": "^10.0.5",
+    "vitest": "^1.6.0",
+    "@cycraft/eslint": "^0.3.0",
+    "@cycraft/tsconfig": "^0.1.2"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "map-object",
     "object-map",
@@ -56,46 +45,13 @@
     "compose",
     "map-reduce"
   ],
-  "author": "Luca Ban - Mesqueeb",
+  "author": "Luca Ban - Mesqueeb (https://cycraft.co)",
   "funding": "https://github.com/sponsors/mesqueeb",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mesqueeb/map-anything/issues"
-  },
-  "homepage": "https://github.com/mesqueeb/map-anything#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mesqueeb/map-anything.git"
+    "url": "https://github.com/mesqueeb/map-anything.git"
   },
-  "np": {
-    "yarn": false,
-    "branch": "production"
-  },
-  "eslintConfig": {
-    "ignorePatterns": [
-      "node_modules",
-      "dist",
-      "scripts",
-      "test"
-    ],
-    "root": true,
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint",
-      "tree-shaking"
-    ],
-    "extends": [
-      "eslint:recommended",
-      "plugin:@typescript-eslint/eslint-recommended",
-      "plugin:@typescript-eslint/recommended",
-      "prettier"
-    ],
-    "rules": {
-      "@typescript-eslint/no-empty-function": "off",
-      "@typescript-eslint/no-explicit-any": "off",
-      "@typescript-eslint/ban-ts-ignore": "off",
-      "tree-shaking/no-side-effects-in-initialization": "error",
-      "@typescript-eslint/ban-ts-comment": "off"
-    }
-  }
+  "homepage": "https://github.com/mesqueeb/map-anything#readme",
+  "bugs": "https://github.com/mesqueeb/map-anything/issues"
 }
