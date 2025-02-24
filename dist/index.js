@@ -1,15 +1,19 @@
-/**
- * Map each value of an object with provided function, just like `Array.map`
- */
+/** Map each value of an object with provided function, just like `Array.map` */
 export function mapObject(target, mapFunction) {
     return Object.entries(target).reduce((carry, [key, value], index, array) => {
         carry[key] = mapFunction(value, key, array);
         return carry;
     }, {});
 }
-/**
- * Map each value of an object with provided function, just like `Array.map`
- */
+/** Map each value of an object with provided function, just like `Array.map` */
+export function mapObjectKeys(target, mapFunction) {
+    return Object.entries(target).reduce((carry, [key, value], index, array) => {
+        const newkey = mapFunction(key, value, array);
+        carry[newkey] = value;
+        return carry;
+    }, {});
+}
+/** Map each value of an object with provided function, just like `Array.map` */
 export async function mapObjectAsync(target, mapFunction) {
     const entries = Object.entries(target);
     const promises = entries.map(async ([key, value]) => {
@@ -22,9 +26,7 @@ export async function mapObjectAsync(target, mapFunction) {
         return carry;
     }, {});
 }
-/**
- * Map each value of a map with provided function, just like `Array.map`
- */
+/** Map each value of a map with provided function, just like `Array.map` */
 export function mapMap(target, mapFunction) {
     return [...target.entries()].reduce((carry, [key, value], index, array) => {
         carry.set(key, mapFunction(value, key, array));
