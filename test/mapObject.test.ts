@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { expect, test } from 'vitest'
-import { mapObject, mapObjectAsync } from '../src/index.js'
+import { mapObject, mapObjectAsync, mapObjectKeys } from '../src/index.js'
 
 test('mapObjectWithObjects', () => {
   type Pokemon = { name: string; level: number }
@@ -17,6 +18,25 @@ test('mapObjectWithObjects', () => {
     '001': { name: 'Bulbasaur', level: 11 },
     '004': { name: 'Charmander', level: 9 },
     '007': { name: 'Squirtle', level: 12 },
+  })
+})
+
+test('mapObjectKeys', () => {
+  type Pokemon = { name: string; level: number }
+
+  const target: { [id in string]: Pokemon } = {
+    '001': { name: 'Bulbasaur', level: 10 },
+    '004': { name: 'Charmander', level: 8 },
+    '007': { name: 'Squirtle', level: 11 },
+  }
+
+  const res = mapObjectKeys(target, (key) => {
+    return `_${key}`
+  })
+  expect(res).toEqual({
+    _001: { name: 'Bulbasaur', level: 10 },
+    _004: { name: 'Charmander', level: 8 },
+    _007: { name: 'Squirtle', level: 11 },
   })
 })
 

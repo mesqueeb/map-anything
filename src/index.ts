@@ -1,6 +1,4 @@
-/**
- * Map each value of an object with provided function, just like `Array.map`
- */
+/** Map each value of an object with provided function, just like `Array.map` */
 export function mapObject<
   T extends { [key in string | number | symbol]: unknown },
   MapFunction extends (value: T[keyof T], propName: keyof T, array: T[keyof T][]) => any,
@@ -14,9 +12,24 @@ export function mapObject<
   )
 }
 
-/**
- * Map each value of an object with provided function, just like `Array.map`
- */
+/** Map each value of an object with provided function, just like `Array.map` */
+export function mapObjectKeys<
+  T extends { [key in string | number | symbol]: unknown },
+  MapFunction extends (propName: keyof T, value: T[keyof T], array: T[keyof T][]) => any,
+>(target: T, mapFunction: MapFunction): { [key in ReturnType<typeof mapFunction>]: T[keyof T] } {
+  return Object.entries(target).reduce(
+    (carry, [key, value], index, array) => {
+      const newkey = mapFunction(key, value as any, array as T[keyof T][]) as ReturnType<
+        typeof mapFunction
+      >
+      carry[newkey] = value as any
+      return carry
+    },
+    {} as { [key in ReturnType<typeof mapFunction>]: T[keyof T] },
+  )
+}
+
+/** Map each value of an object with provided function, just like `Array.map` */
 export async function mapObjectAsync<
   T extends { [key in string | number | symbol]: unknown },
   MapFunction extends (value: T[keyof T], propName: keyof T, array: T[keyof T][]) => Promise<any>,
@@ -44,9 +57,7 @@ export type KeyOfMap<M extends Map<unknown, unknown>> = M extends Map<infer K, u
 export type ValueOfMap<M extends Map<unknown, unknown>> =
   M extends Map<unknown, infer V> ? V : never
 
-/**
- * Map each value of a map with provided function, just like `Array.map`
- */
+/** Map each value of a map with provided function, just like `Array.map` */
 export function mapMap<
   T extends Map<unknown, unknown>,
   MapFunction extends (value: ValueOfMap<T>, propName: KeyOfMap<T>, array: ValueOfMap<T>[]) => any,

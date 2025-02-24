@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { expect, test } from 'vitest'
 import { mapMap } from '../src/index.js'
 
 test('mapMapWithObjects', () => {
   type Pokemon = { name: string; level: number }
 
-  const target: Map<string, Pokemon> = new Map([
+  const target = new Map<string, Pokemon>([
     ['001', { name: 'Bulbasaur', level: 10 }],
     ['004', { name: 'Charmander', level: 8 }],
     ['007', { name: 'Squirtle', level: 11 }],
@@ -23,7 +24,7 @@ test('mapMapWithObjects', () => {
 test('with types', () => {
   type Pokemon = { name: string; level: number }
 
-  const target: Map<string, Pokemon> = new Map([
+  const target = new Map<string, Pokemon>([
     ['001', { name: 'Bulbasaur', level: 10 }],
     ['004', { name: 'Charmander', level: 8 }],
     ['007', { name: 'Squirtle', level: 11 }],
@@ -57,7 +58,7 @@ test('mapMapWithNumbers', () => {
 test('set to propname + test type inside of second arg', () => {
   type Pokemon = { name: string; level: number }
 
-  const target: Map<string, Pokemon> = new Map([
+  const target = new Map<string, Pokemon>([
     ['001', { name: 'Bulbasaur', level: 10 }],
     ['004', { name: 'Charmander', level: 8 }],
     ['007', { name: 'Squirtle', level: 11 }],
@@ -74,7 +75,7 @@ test('set to propname + test type inside of second arg', () => {
 test('replace objects with numbers', () => {
   type Pokemon = { name: string; level: number }
 
-  const target: Map<string, Pokemon> = new Map([
+  const target = new Map<string, Pokemon>([
     ['001', { name: 'Bulbasaur', level: 10 }],
     ['004', { name: 'Charmander', level: 8 }],
     ['007', { name: 'Squirtle', level: 11 }],
